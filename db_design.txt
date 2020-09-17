@@ -1,0 +1,26 @@
+
+
+users have:
+-user_id (PK),
+-email,
+-username,
+-name,
+-bio(optional),
+-location(optional),
+-age(optional),
+-texts_count,
+-created_at,
+-followers_count, // ?
+-following_count // ?
+
+
+texts have:
+-text_id (PK),
+-text_text,
+-created_at,
+-user_id
+
+
+text_urls have:
+-text_id (FK),
+-url
