@@ -159,7 +159,8 @@ router.get('/info', auth, async(req, res) => {
     const user = await User.findOne({
       where: {
         user_id: id
-      }
+      },
+      attributes: ['user_id', 'age', 'bio', 'email', 'username', 'name', 'created_at']
     })
 
     if(user) {
