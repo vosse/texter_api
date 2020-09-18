@@ -164,9 +164,7 @@ router.get('/info', auth, async(req, res) => {
     })
 
     if(user) {
-      return res.status(200).json(user)
-    } else {
-      return res.status(401).send('crap')
+      res.status(200).json(user)
     }
   } catch (err) {
     console.error(err.message)
