@@ -130,12 +130,12 @@ router.post('/login', async (req, res) => {
       })
     }
 
-    const jwtoken = await jwtGen(user.user_id)
+    const token = await jwtGen(user.user_id)
 
-    console.log(`JWTOKEN IS ${jwtoken}`)
+    console.log(`TOKEN IS ${token}`)
 
     res.status(200).json({
-      jwtoken
+      token
     })
 
   } catch (err) {
@@ -150,14 +150,15 @@ We'll see bout this one
 
 */
 
-router.post('/info', auth, async(req, res) => {
+router.get('/info', auth, async(req, res) => {
 
-  let { user_id } = req.body
+  let { id } = req.user
+
 
   try {
     const user = await User.findOne({
       where: {
-        user_id: user_id
+        user_id: id
       }
     })
 
