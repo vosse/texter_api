@@ -1,3 +1,4 @@
 .env
 /config/db.js
 query.sql
+node_modules
