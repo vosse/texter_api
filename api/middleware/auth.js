@@ -5,8 +5,6 @@ const auth = (req, res, next) => {
   const authHeader = req.headers['x-auth-token']
   const token = authHeader //&& authHeader.split(' ')[1]
 
-
-
   try {
 
     if(token==null) {
