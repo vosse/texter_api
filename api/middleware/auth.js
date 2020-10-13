@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 
+
 const auth = (req, res, next) => {
   const authHeader = req.headers['x-auth-token']
   const token = authHeader //&& authHeader.split(' ')[1]
@@ -24,6 +25,13 @@ const auth = (req, res, next) => {
     })
   }
 
+
+  // app.use(
+  //   jwt({
+  //     secret: 'secret123',
+  //     getToken: req => req.cookies.token
+  //   })
+  // );
 
 
   // jwt.verify(token, process.env.JWT_KEY, (err, user) => {
