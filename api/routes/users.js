@@ -174,6 +174,20 @@ router.get('/info', auth, async(req, res) => {
 
 
 /*
+VERIFY
+*/
+
+router.post('/verify', auth, async(req, res) => {
+  try {
+    res.json(true)
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send('Server error')
+  }
+}) 
+
+
+/*
 DELETE USER
 
 */
