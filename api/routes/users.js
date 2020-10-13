@@ -102,6 +102,7 @@ router.post('/login', async (req, res) => {
 
   let user = {}
 
+
   if(username && username.indexOf('@') === -1) {
       user = await User.findOne({ where: {
       username: username
@@ -111,7 +112,9 @@ router.post('/login', async (req, res) => {
       email: email
     }})
   } else {
-    res.status(401)
+    res.status(401).json({
+      msg: "Err"
+    })
   }
 
   try {
