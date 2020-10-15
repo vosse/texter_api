@@ -47,6 +47,23 @@ router.post('/new', auth, async(req, res) => {
 
 /*
 GET ROUTE
+GET ALL TEXTS
+*/
+
+router.get('/all', auth, async(req, res) => {
+  try {
+    let texts = await Text.findAll()
+
+    res.status(200).json(texts)
+
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
+})
+
+
+/*
+GET ROUTE
 GET ALL TEXTS FROM CERTAIN USER
 */
 
