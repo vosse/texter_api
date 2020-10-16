@@ -28,7 +28,8 @@ const port = process.env.PORT || 5000
 
 
 // routes
-app.use('/auth', require('./api/routes/users'))
+app.use('/user', require('./api/routes/users'))
+app.use('/auth', require('./api/routes/auth'))
 app.use('/text', require('./api/routes/texts'))
 
 
