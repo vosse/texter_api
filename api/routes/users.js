@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const auth = require('../middleware/auth')
 
 const User = require('../models/User')
 const Text = require('../models/Text')
+const { route } = require('./texts')
 
 /*
 GET ROUTE
@@ -36,6 +38,34 @@ router.get('/:username', async(req, res) => {
     }
   })
 
+
+
+route.get('/info', auth, async(req, res) => {
+    try {
+        let { id } = req.user
+
+        let user = User.findOne({ where: {
+            user_id: id
+        },
+        attributes: [
+            'user_id', 
+            'age', 
+            'bio', 
+            'email', 
+            'username', 
+            'name', 
+            'created_at'
+        ]
+    })
+
+    if(user) {
+        res.status(200).json(user)
+    }
+
+    } catch (err) {
+        res.status(500).send('Server error')
+    }
+})
 
 
 module.exports = router
