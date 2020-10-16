@@ -40,7 +40,7 @@ router.get('/:username', async(req, res) => {
 
 
 
-route.get('/info', auth, async(req, res) => {
+router.get('/info', auth, async(req, res) => {
     try {
         let { id } = req.user
 
