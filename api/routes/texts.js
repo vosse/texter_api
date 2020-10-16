@@ -52,7 +52,7 @@ GET ALL TEXTS
 
 router.get('/all', auth, async(req, res) => {
   try {
-    let texts = await Text.findAll()
+    let texts = await Text.findAll({include: [{model: User}]})
 
     res.status(200).json(texts)
 

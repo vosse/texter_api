@@ -52,12 +52,16 @@ const User = db.define('users', {
   }
 })
 
-User.associate = (models) => {
-  User.hasMany(models.Text, {
-    onDelete: 'cascade'
-  })
-}
+// User.associate = (models) => {
+//   User.hasMany(models.Text, {
+//     onDelete: 'cascade',
+//     foreignKey: 'user_id',
+//     as: "Text"
+//   })
+// }
 
+//User.hasMany(Text)
+//, { foreignKey: 'user_id'}
 
 
 module.exports = User

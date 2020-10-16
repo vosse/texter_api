@@ -16,7 +16,8 @@ const Text = db.define('texts', {
   },
   user_id: {
     type: DataTypes.UUID,
-    foreignKey: true
+    // foreignKey: true
+    references :  { model: "User", key: "user_id" }
   },
   // url_id: {
   //   type: DataTypes.UUID
@@ -30,16 +31,15 @@ const Text = db.define('texts', {
 
 //Text.belongsTo(Texturl, { foreignKey: 'url_id'})
 
-Text.assosciate = (models) => {
-  Text.belongsTo(models.User, {
-    foreignKey: {
-      allowNull: false
-    }
-  })
-}
+// Text.assosciate = (models) => {
+//   Text.belongsTo(models.User, {
+//     foreignKey: 'user_id', as: "User"
+//   })
+// }
 
 
-//Text.belongsTo(User, { foreignKey: 'user_id' })
+//Text.belongsTo(User)
+//, { foreignKey: 'user_id' }
 
 
 module.exports = Text

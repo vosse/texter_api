@@ -1,4 +1,6 @@
 const express = require('express')
+const User = require('./api/models/User')
+const Text = require('./api/models/Text')
 
 const app = express()
 app.use(express.json())
@@ -16,6 +18,10 @@ app.use((req, res, next) => {
   }
   next()
 })
+
+
+User.hasMany(Text, { foreignKey: 'user_id'})
+Text.belongsTo(User, { foreignKey: 'user_id'})
 
 
 const port = process.env.PORT || 5000
