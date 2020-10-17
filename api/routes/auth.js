@@ -135,27 +135,27 @@ We'll see bout this one
 
 */
 
-router.get('/info', auth, async(req, res) => {
+// router.get('/info', auth, async(req, res) => {
 
-  let { id } = req.user
+//   let { id } = req.user
 
 
-  try {
-    const user = await User.findOne({
-      where: {
-        user_id: id
-      },
-      attributes: ['user_id', 'age', 'bio', 'email', 'username', 'name', 'created_at']
-    })
+//   try {
+//     const user = await User.findOne({
+//       where: {
+//         user_id: id
+//       },
+//       attributes: ['user_id', 'age', 'bio', 'email', 'username', 'name', 'created_at']
+//     })
 
-    if(user) {
-      res.status(200).json(user)
-    }
-  } catch (err) {
-    console.error(err.message)
-    res.status(500).send('Server error')
-  }
-})
+//     if(user) {
+//       res.status(200).json(user)
+//     }
+//   } catch (err) {
+//     console.error(err.message)
+//     res.status(500).send('Server error')
+//   }
+// })
 
 
 /*

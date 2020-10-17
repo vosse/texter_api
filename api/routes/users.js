@@ -11,7 +11,7 @@ GET ROUTE
 GET POSTS FROM SPECIFIC USER
 */
 
-router.get('/:username', async(req, res) => {
+router.get('/get/:username', async(req, res) => {
     try {
   
       let { username } = req.params
@@ -41,10 +41,13 @@ router.get('/:username', async(req, res) => {
 
 
 router.get('/info', auth, async(req, res) => {
-    try {
-        let { id } = req.user
 
-        let user = User.findOne({ where: {
+    let { id } = req.user
+
+    try {
+        
+
+        let user = await User.findOne({ where: {
             user_id: id
         },
         attributes: [
@@ -60,6 +63,9 @@ router.get('/info', auth, async(req, res) => {
 
     if(user) {
         res.status(200).json(user)
+    } else {
+        console.log('user not found')
+        res.status(404).json({ msg: 'User not found '})
     }
 
     } catch (err) {
