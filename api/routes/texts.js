@@ -52,7 +52,7 @@ GET ALL TEXTS
 
 router.get('/all', auth, async(req, res) => {
   try {
-    let texts = await Text.findAll({include: [{model: User, attributes: ['user_id', 'username', 'name']}]})
+    let texts = await Text.findAll({include: [{model: User, attributes: ['user_id', 'username', 'name']}], order: [['created_at', 'DESC']]})
 
     res.status(200).json(texts)
 
@@ -72,7 +72,7 @@ router.get('/user', auth, async(req, res) => {
 
     let texts = await Text.findAll({ where: {
       user_id: req.user.id
-    }})
+    }, order: [['created_at', 'DESC']]})
 
     res.status(200).json(texts)
 

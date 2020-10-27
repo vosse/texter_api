@@ -24,8 +24,9 @@ router.get('/get/:username', async(req, res) => {
                 'name'
             ],
             include: [{
-                model: Text
-            }]
+                model: Text,
+            }],
+            order: [[Text, 'created_at', 'DESC']]
         })
   
       if(user) {
