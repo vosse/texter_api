@@ -108,7 +108,8 @@ router.get('/:text_id', auth, async(req, res) => {
     let text = await Text.findOne({
       where: {
         text_id: req.params.text_id
-      }
+      },
+      include: [{model: User, attributes: ['user_id', 'username', 'name']}]
     })
 
     res.status(200).json(text)
