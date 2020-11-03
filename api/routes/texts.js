@@ -111,7 +111,7 @@ router.get('/:text_id', auth, async(req, res) => {
       }
     })
 
-    res.status(200).json(texts)
+    res.status(200).json(text)
 
   } catch (err) {
     res.status(500).send(err.message)
