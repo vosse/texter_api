@@ -40,6 +40,9 @@ router.get('/get/:username', async(req, res) => {
   })
 
 
+/*
+GET INFO ROUTE
+*/
 
 router.get('/info', auth, async(req, res) => {
 
@@ -72,6 +75,66 @@ router.get('/info', auth, async(req, res) => {
     } catch (err) {
         res.status(500).send('Server error')
     }
+})
+
+
+
+/*
+UPDATE ROUTE
+UPDATE USER
+*/
+router.put('/update', auth, async (req, res) => {
+  
+  let { id } = req.user
+
+  let { username, name, bio, age } = req.body 
+
+  try {
+    let user = await User.findOne({ where: {
+      user_id: id
+    },
+      attributes: [
+        'user_id', 
+        'age', 
+        'bio', 
+        'email', 
+        'username', 
+        'name', 
+        'created_at'
+      ]
+    })
+
+    
+
+    if(user) {
+
+      
+
+      const updateUser = await User.update({
+        username: username,
+        name: name,
+        bio: bio,
+        age: age
+      }, {
+        where: {
+          user_id: id
+        }
+      })
+
+      console.log('pass')
+
+      res.status(200).json(updateUser)
+
+      
+
+    } else {
+      res.status(404).json({ msg: 'User not found '})
+    }
+
+  } catch (err) {
+    res.status(500).send('Server error')
+  }
+
 })
 
 
