@@ -138,4 +138,46 @@ router.put('/update', auth, async (req, res) => {
 })
 
 
+/*
+DELETE ROUTE
+DELETE USER
+*/
+
+router.delete('/delete/:username', auth, async (req, res) => {
+
+  const { id } = req.user
+
+  const { username } = req.params.username
+
+  try {
+
+    const user = await User.findOne({
+      where: {
+        user_id: id
+      }
+    })
+
+    if(user) {
+
+      console.log(username)
+
+      const delUser = await User.destroy({
+        where: {
+          user_id: id,
+          username: req.params.username
+        }
+      })
+
+      res.status(200).json({ msg: 'User deleted' })
+
+    } else {
+      res.status(404).json({ msg: 'User does not exist' })
+    }
+
+  } catch (err) {
+    res.status(500).send('Server error')
+  }
+})
+
+
 module.exports = router
